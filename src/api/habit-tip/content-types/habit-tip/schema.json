@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "habit_tips",
+  "info": {
+    "singularName": "habit-tip",
+    "pluralName": "habit-tips",
+    "displayName": "Habit Tip"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    }
+  }
+}
