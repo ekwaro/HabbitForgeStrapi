@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "habits",
+  "info": {
+    "singularName": "habit",
+    "pluralName": "habits",
+    "displayName": "Habit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "targetDate": {
+      "type": "date"
+    },
+    "partnerEmail": {
+      "type": "email"
+    }
+  }
+}
