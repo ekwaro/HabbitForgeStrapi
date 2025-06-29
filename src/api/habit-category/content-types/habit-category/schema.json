@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "habit_categories",
+  "info": {
+    "singularName": "habit-category",
+    "pluralName": "habit-categories",
+    "displayName": "Habit Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
