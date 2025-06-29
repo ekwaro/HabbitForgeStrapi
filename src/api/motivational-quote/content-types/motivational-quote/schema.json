@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "motivational_quotes",
+  "info": {
+    "singularName": "motivational-quote",
+    "pluralName": "motivational-quotes",
+    "displayName": "Motivational Quote"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    }
+  }
+}
