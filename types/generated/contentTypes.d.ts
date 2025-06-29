@@ -373,6 +373,94 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHabitCategoryHabitCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'habit_categories';
+  info: {
+    displayName: 'Habit Category';
+    pluralName: 'habit-categories';
+    singularName: 'habit-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::habit-category.habit-category'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHabitResourceHabitResource
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'habit_resources';
+  info: {
+    displayName: 'Habit Resource';
+    pluralName: 'habit-resources';
+    singularName: 'habit-resource';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::habit-resource.habit-resource'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHabitTipHabitTip extends Struct.CollectionTypeSchema {
+  collectionName: 'habit_tips';
+  info: {
+    displayName: 'Habit Tip';
+    pluralName: 'habit-tips';
+    singularName: 'habit-tip';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::habit-tip.habit-tip'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
   collectionName: 'habits';
   info: {
@@ -398,6 +486,65 @@ export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
     startDate: Schema.Attribute.Date;
     targetDate: Schema.Attribute.Date;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMotivationalQuoteMotivationalQuote
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'motivational_quotes';
+  info: {
+    displayName: 'Motivational Quote';
+    pluralName: 'motivational-quotes';
+    singularName: 'motivational-quote';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::motivational-quote.motivational-quote'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuoteResourceQuoteResource
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'quote_resources';
+  info: {
+    displayName: 'Quote Resource';
+    pluralName: 'quote-resources';
+    singularName: 'quote-resource';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::quote-resource.quote-resource'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -968,7 +1115,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::habit-category.habit-category': ApiHabitCategoryHabitCategory;
+      'api::habit-resource.habit-resource': ApiHabitResourceHabitResource;
+      'api::habit-tip.habit-tip': ApiHabitTipHabitTip;
       'api::habit.habit': ApiHabitHabit;
+      'api::motivational-quote.motivational-quote': ApiMotivationalQuoteMotivationalQuote;
+      'api::quote-resource.quote-resource': ApiQuoteResourceQuoteResource;
       'api::quote.quote': ApiQuoteQuote;
       'api::tip.tip': ApiTipTip;
       'plugin::content-releases.release': PluginContentReleasesRelease;
