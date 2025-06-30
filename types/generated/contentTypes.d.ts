@@ -481,10 +481,9 @@ export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::habit.habit'> &
       Schema.Attribute.Private;
-    partnerEmail: Schema.Attribute.Email;
+    partnerId: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     startDate: Schema.Attribute.Date;
-    targetDate: Schema.Attribute.Date;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

@@ -26,11 +26,8 @@
     "endDate": {
       "type": "date"
     },
-    "targetDate": {
-      "type": "date"
-    },
-    "partnerEmail": {
-      "type": "email"
+    "partnerId": {
+      "type": "string"
     }
   }
 }
