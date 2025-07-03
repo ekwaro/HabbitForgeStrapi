@@ -12,13 +12,13 @@ module.exports = ({ env }) => ({
         host: "smtp.gmail.com",
         port: 587,
         auth: {
-          user: "dorcusarigye9@gmail.com",
-          pass: "jzpk ojzq qupc jidk",
+          user: env('SMTP_USERNAME'), // Moved to .env
+          pass: env('SMTP_PASSWORD')
         },
       },
       settings: {
-        defaultFrom: "dorcusarigye9@gmail.com",
-        defaultReplyTo: "dorcusarigye9@gmail.com",
+               defaultFrom: env('SMTP_USERNAME'), // Moved to .env
+        defaultReplyTo: env('SMTP_USERNAME'), 
       },
     },
   },
