@@ -373,6 +373,36 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGoalGoal extends Struct.CollectionTypeSchema {
+  collectionName: 'goals';
+  info: {
+    displayName: 'Goal';
+    pluralName: 'goals';
+    singularName: 'goal';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    completed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::goal.goal'> &
+      Schema.Attribute.Private;
+    notes: Schema.Attribute.Component<'goal.note', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    subgoals: Schema.Attribute.Component<'goal.subgoal', true>;
+    targetDate: Schema.Attribute.Date;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHabitCategoryHabitCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'habit_categories';
@@ -469,7 +499,7 @@ export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
     singularName: 'habit';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -481,7 +511,6 @@ export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::habit.habit'> &
       Schema.Attribute.Private;
-    partnerId: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     startDate: Schema.Attribute.Date;
     title: Schema.Attribute.String;
@@ -558,7 +587,7 @@ export interface ApiQuoteQuote extends Struct.CollectionTypeSchema {
     singularName: 'quote';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     author: Schema.Attribute.String;
@@ -586,7 +615,7 @@ export interface ApiTipTip extends Struct.CollectionTypeSchema {
     singularName: 'tip';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     author: Schema.Attribute.String;
@@ -1060,7 +1089,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1074,6 +1102,8 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    feedback: Schema.Attribute.Relation<'oneToMany', 'api::feedback.feedback'>;
+    feedbacks: Schema.Attribute.Relation<'oneToMany', 'api::feedback.feedback'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1114,6 +1144,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::goal.goal': ApiGoalGoal;
       'api::habit-category.habit-category': ApiHabitCategoryHabitCategory;
       'api::habit-resource.habit-resource': ApiHabitResourceHabitResource;
       'api::habit-tip.habit-tip': ApiHabitTipHabitTip;

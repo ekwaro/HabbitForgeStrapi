@@ -7,7 +7,7 @@ module.exports= ({ env }) => ({
     },
       pool: {
       min: 2,
-      max: 20, // default is usually 10; increase this
+      max: 30, // default is usually 10; increase this
     },
   },
 });

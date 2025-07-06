@@ -7,7 +7,7 @@
     "displayName": "Habit"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -25,9 +25,6 @@
     },
     "endDate": {
       "type": "date"
-    },
-    "partnerId": {
-      "type": "string"
     }
   }
 }

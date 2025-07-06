@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "goals",
+  "info": {
+    "singularName": "goal",
+    "pluralName": "goals",
+    "displayName": "Goal"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "subgoals": {
+      "type": "component",
+      "component": "goal.subgoal",
+      "repeatable": true
+    },
+    "notes": {
+      "type": "component",
+      "component": "goal.note",
+      "repeatable": true
+    },
+    "targetDate": {
+      "type": "date"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
