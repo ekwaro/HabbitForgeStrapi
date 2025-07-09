@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "collectionName": "feedbacks",
   "info": {
     "singularName": "feedback",
@@ -25,11 +26,31 @@
       "target": "api::habit.habit"
     },
     "rating": {
-  "type": "integer",
-  "min": 1,
-  "max": 5
-},
-     "from": { "type": "relation", "relation": "oneToOne", "target": "plugin::users-permissions.user" },
-    "to": { "type": "relation", "relation": "oneToOne", "target": "plugin::users-permissions.user" }
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "from": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "to": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "fromuser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "feedbacks"
+    },
+    "touser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "feedback"
+    }
   }
 }

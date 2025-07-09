@@ -431,6 +431,10 @@ export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    fromuser: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     goal: Schema.Attribute.Relation<'manyToOne', 'api::goal.goal'>;
     habit: Schema.Attribute.Relation<'manyToOne', 'api::habit.habit'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -450,6 +454,10 @@ export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
         number
       >;
     to: Schema.Attribute.Relation<'oneToOne', 'plugin::users-permissions.user'>;
+    touser: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1223,6 +1231,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    profilePicture: Schema.Attribute.Media<'images'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;

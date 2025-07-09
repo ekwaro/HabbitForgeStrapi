@@ -77,6 +77,13 @@
       "relation": "oneToMany",
       "target": "api::feedback.feedback",
       "mappedBy": "touser"
+    },
+    "profilePicture": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }
