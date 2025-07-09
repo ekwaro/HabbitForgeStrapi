@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "habits",
+  "collectionName": "goals",
   "info": {
-    "singularName": "habit",
-    "pluralName": "habits",
-    "displayName": "Habit"
+    "singularName": "goal",
+    "pluralName": "goals",
+    "displayName": "Goal"
   },
   "options": {
     "draftAndPublish": false
@@ -12,30 +12,35 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "subgoals": {
+      "type": "component",
+      "component": "goal.subgoal",
+      "repeatable": true
+    },
+    "notes": {
+      "type": "component",
+      "component": "goal.note",
+      "repeatable": true
+    },
+    "targetDate": {
+      "type": "date"
     },
     "description": {
       "type": "text"
-    },
-    "frequency": {
-      "type": "string"
-    },
-    "startDate": {
-      "type": "date"
-    },
-    "endDate": {
-      "type": "date"
-    },
-     "completedDates": {
-      "type": "json",
-      "default":[]
     },
     "accountabilityPartner": {
   "type": "relation",
   "relation": "oneToOne",
   "target": "plugin::users-permissions.user"
-}
-,"owner": {
+},
+ "owner": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
@@ -45,5 +50,6 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     }
+
   }
 }

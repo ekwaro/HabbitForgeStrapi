@@ -2,7 +2,4 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::habit.habit');
-
-
-
+module.exports = createCoreController('api::feedback.feedback');
