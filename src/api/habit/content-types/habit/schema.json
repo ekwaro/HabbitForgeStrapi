@@ -25,6 +25,25 @@
     },
     "endDate": {
       "type": "date"
+    },
+     "completedDates": {
+      "type": "json",
+      "default":[]
+    },
+    "accountabilityPartner": {
+  "type": "relation",
+  "relation": "oneToOne",
+  "target": "plugin::users-permissions.user"
+}
+,"owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "partner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

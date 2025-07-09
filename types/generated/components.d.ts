@@ -40,11 +40,23 @@ export interface GoalSubgoal extends Struct.ComponentSchema {
   };
 }
 
+export interface HabitCompleteddates extends Struct.ComponentSchema {
+  collectionName: 'components_habit_completedDates';
+  info: {
+    displayName: 'completedDates';
+    icon: 'check-circle';
+  };
+  attributes: {
+    completedDates: Schema.Attribute.Date;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'goal.note': GoalNote;
       'goal.subgoal': GoalSubgoal;
+      'habit.completeddates': HabitCompleteddates;
     }
   }
 }

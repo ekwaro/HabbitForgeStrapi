@@ -1,0 +1,19 @@
+{"collectionName": "checkins",
+  "info": {
+    "singularName": "checkin",
+    "pluralName": "checkins",
+    "displayName": "Checkin"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": { "type": "relation","relation": "manyToOne", "target": "plugin::users-permissions.user" },
+    "partner": { "type": "relation", "relation": "manyToOne","target": "plugin::users-permissions.user" },
+    "weekStart": { "type": "date" },
+    "completedGoals": { "type": "integer" },
+    "completedHabits": { "type": "integer" },
+    "comment": { "type": "text" }
+  }
+}

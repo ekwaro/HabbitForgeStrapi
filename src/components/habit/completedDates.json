@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_habit_completedDates",
+  "info": {
+    "displayName": "completedDates",
+    "icon": "check-circle"
+  },
+  "attributes": {
+    
+    "completedDates": {
+      "type": "date"
+    }
+   
+  }
+}
