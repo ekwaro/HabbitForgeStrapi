@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "collectionName": "feedbacks",
   "info": {
     "singularName": "feedback",
@@ -9,6 +10,7 @@
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "message": {
       "type": "text",
@@ -25,11 +27,19 @@
       "target": "api::habit.habit"
     },
     "rating": {
-  "type": "integer",
-  "min": 1,
-  "max": 5
-},
-     "from": { "type": "relation", "relation": "oneToOne", "target": "plugin::users-permissions.user" },
-    "to": { "type": "relation", "relation": "oneToOne", "target": "plugin::users-permissions.user" }
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "sender": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "receiver": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
   }
 }
