@@ -31,7 +31,9 @@
       "min": 1,
       "max": 5
     },
+
     "sender": {
+
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
@@ -40,6 +42,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+
     }
   }
 }
