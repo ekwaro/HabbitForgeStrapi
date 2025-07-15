@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "habit_resources",
+  "collectionName": "tip_resources",
   "info": {
-    "singularName": "habit-resource",
-    "pluralName": "habit-resources",
-    "displayName": "Habit Resource"
+    "singularName": "tip-resource",
+    "pluralName": "tip-resources",
+    "displayName": "tip-resource"
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +15,7 @@
       "type": "string"
     },
     "link": {
-      "type": "string"
+      "type": "text"
     }
   }
 }
