@@ -3,6 +3,7 @@ module.exports = ({ env }) => ({
     enabled: true
   },
 
+
   // Only enable email in production or when explicitly needed
   ...(env('NODE_ENV') === 'production' && {
     email: {
@@ -20,6 +21,7 @@ module.exports = ({ env }) => ({
           defaultFrom: env('SMTP_USERNAME'), // Moved to .env
           defaultReplyTo: env('SMTP_USERNAME'), 
         },
+
       },
     },
   }),

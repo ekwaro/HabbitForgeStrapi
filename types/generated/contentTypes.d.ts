@@ -427,10 +427,6 @@ export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    from: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
     fromuser: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
@@ -454,10 +450,6 @@ export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
         number
       >;
     to: Schema.Attribute.Relation<'oneToOne', 'plugin::users-permissions.user'>;
-    touser: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -489,11 +481,7 @@ export interface ApiGoalGoal extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     notes: Schema.Attribute.Component<'goal.note', true>;
     owner: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    partner: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     publishedAt: Schema.Attribute.DateTime;
@@ -590,16 +578,49 @@ export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::habit.habit'> &
       Schema.Attribute.Private;
     owner: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    partner: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     publishedAt: Schema.Attribute.DateTime;
     startDate: Schema.Attribute.Date;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
+  collectionName: 'messages';
+  info: {
+    displayName: 'Message';
+    pluralName: 'messages';
+    singularName: 'message';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    habit: Schema.Attribute.Relation<'manyToOne', 'api::habit.habit'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::message.message'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    receiver: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    sender: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1266,6 +1287,7 @@ declare module '@strapi/strapi' {
       'api::habit-category.habit-category': ApiHabitCategoryHabitCategory;
       'api::habit-tip.habit-tip': ApiHabitTipHabitTip;
       'api::habit.habit': ApiHabitHabit;
+      'api::message.message': ApiMessageMessage;
       'api::motivational-quote.motivational-quote': ApiMotivationalQuoteMotivationalQuote;
       'api::quote-resource.quote-resource': ApiQuoteResourceQuoteResource;
       'api::quote.quote': ApiQuoteQuote;
