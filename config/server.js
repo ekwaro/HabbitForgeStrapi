@@ -4,6 +4,9 @@ module.exports = ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
+   cron: {
+    enabled: true,
+  },
   environment: env('NODE_ENV', 'development'),
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),

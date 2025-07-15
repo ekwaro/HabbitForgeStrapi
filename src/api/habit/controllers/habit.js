@@ -26,11 +26,14 @@ module.exports = createCoreController('api::habit.habit', ({ strapi }) => ({
     
      
     const partnerEmail = fullHabit?.accountabilityPartner?.email;
+    const title = fullHabit?.title;
+    const description = fullHabit?.description
      if (partnerEmail) {
       await strapi.service('api::habit.habit').sendPartnerAlert({
-        fullHabit,
+        title: title,
+        description:description,
         partnerEmail: partnerEmail
-      });
+     })
     }
     return fullHabit;
 

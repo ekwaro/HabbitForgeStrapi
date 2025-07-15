@@ -20,7 +20,8 @@ module.exports = createCoreService('api::habit.habit', ({ strapi }) => {
 
   return {
    
-    async sendPartnerAlert({ habit, partnerEmail }) {
+    async sendPartnerAlert({title,description, partnerEmail }) {
+     
       if (!partnerEmail) {
         strapi.log.warn('No partner email provided. Email not sent.');
         return;
@@ -30,7 +31,7 @@ module.exports = createCoreService('api::habit.habit', ({ strapi }) => {
         from: process.env.SMTP_USER,
         to: partnerEmail,
         subject: '🎯 New Habit Assigned to You',
-        text: `Hello,\n\nA new habit titled "${habit?.title}" has been assigned to you as an accountability partner.\n\nDescription: ${habit?.description}\n\nPlease support your partner's goal!`,
+        text: `Hello,\n\nA new habit titled "${title}" has been assigned to you as an accountability partner.\n\nDescription: ${description}\n\nPlease support your partner's goal!`,
       };
 
       try {

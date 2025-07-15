@@ -84,6 +84,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::notificatio.notificatio",
+      "mappedBy": "user"
     }
   }
 }

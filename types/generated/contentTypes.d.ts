@@ -373,45 +373,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCheckinCheckin extends Struct.CollectionTypeSchema {
-  collectionName: 'checkins';
-  info: {
-    displayName: 'Checkin';
-    pluralName: 'checkins';
-    singularName: 'checkin';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    comment: Schema.Attribute.Text;
-    completedGoals: Schema.Attribute.Integer;
-    completedHabits: Schema.Attribute.Integer;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::checkin.checkin'
-    > &
-      Schema.Attribute.Private;
-    partner: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    weekStart: Schema.Attribute.Date;
-  };
-}
-
 export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
   collectionName: 'feedbacks';
   info: {
@@ -449,7 +410,18 @@ export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
         },
         number
       >;
-    to: Schema.Attribute.Relation<'oneToOne', 'plugin::users-permissions.user'>;
+    receiver: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    sender: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    touser: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -597,7 +569,7 @@ export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    completedDates: Schema.Attribute.JSON & Schema.Attribute.DefaultTo<[]>;
+    completedDates: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -607,6 +579,10 @@ export interface ApiHabitHabit extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::habit.habit'> &
       Schema.Attribute.Private;
+    notifications: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::notificatio.notificatio'
+    >;
     owner: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
@@ -683,6 +659,42 @@ export interface ApiMotivationalQuoteMotivationalQuote
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNotificatioNotificatio extends Struct.CollectionTypeSchema {
+  collectionName: 'notificatios';
+  info: {
+    displayName: 'Notification';
+    pluralName: 'notificatios';
+    singularName: 'notificatio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    habit: Schema.Attribute.Relation<'manyToOne', 'api::habit.habit'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::notificatio.notificatio'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    read: Schema.Attribute.Boolean;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['reminder, info, alert']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1247,6 +1259,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    notifications: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::notificatio.notificatio'
+    >;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1282,7 +1298,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::checkin.checkin': ApiCheckinCheckin;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::goal.goal': ApiGoalGoal;
       'api::habit-category.habit-category': ApiHabitCategoryHabitCategory;
@@ -1291,6 +1306,7 @@ declare module '@strapi/strapi' {
       'api::habit.habit': ApiHabitHabit;
       'api::message.message': ApiMessageMessage;
       'api::motivational-quote.motivational-quote': ApiMotivationalQuoteMotivationalQuote;
+      'api::notificatio.notificatio': ApiNotificatioNotificatio;
       'api::quote-resource.quote-resource': ApiQuoteResourceQuoteResource;
       'api::quote.quote': ApiQuoteQuote;
       'api::tip.tip': ApiTipTip;

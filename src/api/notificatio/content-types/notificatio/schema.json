@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notificatios",
+  "info": {
+    "singularName": "notificatio",
+    "pluralName": "notificatios",
+    "displayName": "Notification"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "read": {
+      "type": "boolean"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "reminder, info, alert"
+      ]
+    },
+    "habit": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::habit.habit",
+      "inversedBy": "notifications"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "notifications"
+    }
+  }
+}

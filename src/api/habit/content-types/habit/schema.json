@@ -26,20 +26,24 @@
     "endDate": {
       "type": "date"
     },
-     "completedDates": {
-      "type": "json",
-      "default":[]
+    "completedDates": {
+      "type": "json"
     },
     "accountabilityPartner": {
-  "type": "relation",
-  "relation": "oneToOne",
-  "target": "plugin::users-permissions.user"
-}
-,"owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "owner": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::notificatio.notificatio",
+      "mappedBy": "habit"
     }
-
   }
 }
